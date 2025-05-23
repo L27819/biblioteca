@@ -46,4 +46,21 @@ public class UsuarioDao {
 
         return usuario;
     }
+    public void insert(Usuario usuario) throws SQLException {
+        String sql = "INSERT INTO Usuarios (nombre, apellidos, email, nombre_usuario, contrasena, tipo_usuario, activo, fecha_registro) " +
+                "VALUES (?, ?, ?, ?, SHA1(?), ?, ?, ?)";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, usuario.getNombre());
+            statement.setString(2, usuario.getApellidos());
+            statement.setString(3, usuario.getEmail());
+            statement.setString(4, usuario.getNombre_usuario());
+            statement.setString(5, usuario.getContrasena());
+            statement.setString(6, usuario.getTipo_usuario());
+            statement.setBoolean(7, usuario.isActivo());
+            statement.setDate(8, java.sql.Date.valueOf(usuario.getFecha_registro()));
+
+            statement.executeUpdate();
+        }
+    }
 }
