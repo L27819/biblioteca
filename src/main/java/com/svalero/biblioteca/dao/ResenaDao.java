@@ -1,4 +1,4 @@
 package com.svalero.biblioteca.dao;
 
-public class PrestamosDao {
+public class ResenaDao {
 }
