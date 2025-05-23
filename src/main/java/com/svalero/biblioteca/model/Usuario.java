@@ -18,4 +18,7 @@ public class Usuario {
     private boolean activo;
     private LocalDate fecha_registro;
     private String imagen;
+
+    public Usuario() {}
+
 }

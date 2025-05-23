@@ -26,10 +26,8 @@ public class UsuarioDao {
             statement.setString(2, contrasena);
 
             try (ResultSet rs = statement.executeQuery()) {
-                if (!rs.next()) {
-                    throw new UserNotFoundException();
-                }
-                return mapUsuario(rs);
+                if (!rs.next()) throw new UserNotFoundException();
+                    return mapUsuario(rs);
             }
         }
     }

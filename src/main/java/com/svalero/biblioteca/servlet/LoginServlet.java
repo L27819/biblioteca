@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
             if ("admin".equalsIgnoreCase(usuario.getTipo_usuario())) {
                 response.sendRedirect("panel-admin.jsp");
             } else {
-                response.sendRedirect("lista-libros.jsp");
+                response.sendRedirect("listar-libros");
             }
 
         } catch (UserNotFoundException e) {
@@ -43,6 +43,5 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("errorMessage", "Error al conectar con la base de datos.");
             request.getRequestDispatcher("login-error.jsp").forward(request, response);
         }
-
     }
 }
