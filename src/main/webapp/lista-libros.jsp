@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.svalero.biblioteca.model.Libro" %>
 <%@ include file="includes/header.jsp" %>
+<%@ include file="includes/navbar.jsp" %>
 
 <div class="container my-5">
     <h2 class="mb-4 text-center">Listado de Libros 📚</h2>

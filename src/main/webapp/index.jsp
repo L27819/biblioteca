@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="includes/header.jsp" %>
+<%@ include file="includes/navbar.jsp" %>
 
 
     <div class="container d-flex justify-content-center my-5">
