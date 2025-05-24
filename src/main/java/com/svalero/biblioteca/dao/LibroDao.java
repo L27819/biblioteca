@@ -64,4 +64,13 @@ public class LibroDao {
             }
         }
     }
+
+    public void deleteById(int idLibro) throws SQLException {
+        String sql = "DELETE FROM Libros WHERE id_libro = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, idLibro);
+            statement.executeUpdate();
+        }
+    }
+
 }
