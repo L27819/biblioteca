@@ -20,7 +20,7 @@
             <button type="submit" class="btn btn-primary w-100">Iniciar sesión</button>
 
             <div class="mt-3 text-center">
-                <p>¿No tienes cuenta? <a href="registroUsuario.jsp">Regístrate aquí</a></p>
+                <p>¿No tienes cuenta? <a href="registro-usuario.jsp">Regístrate aquí</a></p>
             </div>
 
         </form>

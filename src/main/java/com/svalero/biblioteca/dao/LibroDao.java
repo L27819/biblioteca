@@ -87,4 +87,24 @@ public class LibroDao {
             statement.executeUpdate();
         }
     }
+
+    public void insert(Libro libro) throws SQLException {
+        String sql = "INSERT INTO Libros (isbn, titulo, editorial, fecha_publicacion, genero, paginas, precio, disponible, imagen, id_autor) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, libro.getIsbn());
+            statement.setString(2, libro.getTitulo());
+            statement.setString(3, libro.getEditorial());
+            statement.setDate(4, Date.valueOf(libro.getFecha_publicacion()));
+            statement.setString(5, libro.getGenero());
+            statement.setInt(6, libro.getPaginas());
+            statement.setFloat(7, libro.getPrecio());
+            statement.setBoolean(8, libro.isDisponible());
+            statement.setString(9, libro.getImagen());
+            statement.setInt(10, libro.getId_autor());
+
+            statement.executeUpdate();
+        }
+    }
 }

@@ -34,7 +34,7 @@
             <div class="card shadow-sm text-center p-3">
                 <h5>Añadir nuevo libro</h5>
                 <p>Registra un nuevo libro en el sistema.</p>
-                <a href="añadir-libro.jsp" class="btn btn-primary">Nuevo Libro</a>
+                <a href="registro-libro.jsp" class="btn btn-primary">Nuevo Libro</a>
             </div>
         </div>
     </div>

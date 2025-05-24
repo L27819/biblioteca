@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import javax.servlet.ServletException;
 
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
@@ -44,7 +45,7 @@ public class RegisterServlet extends HttpServlet {
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
             request.setAttribute("errorMessage", "No se pudo registrar el usuario.");
-            request.getRequestDispatcher("registroUsuario.jsp").forward(request, response);
+            request.getRequestDispatcher("registro-usuario.jsp").forward(request, response);
         }
     }
 }
