@@ -30,7 +30,7 @@
 
                     <div class="d-flex flex-wrap gap-2 mt-3">
                         <% if (usuario != null && "admin".equalsIgnoreCase(usuario.getTipo_usuario())) { %>
-                        <a href="editar-libro.jsp?id=<%= libro.getId_libro() %>" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="EditarLibroServlet?id=<%= libro.getId_libro() %>" class="btn btn-warning btn-sm">Editar</a>
                         <a href="EliminarLibroServlet?id=<%= libro.getId_libro() %>" class="btn btn-danger btn-sm"
                            onclick="return confirm('¿Seguro que deseas eliminar este libro?');">Eliminar</a>
                         <% } else if (usuario != null && "user".equalsIgnoreCase(usuario.getTipo_usuario())) { %>

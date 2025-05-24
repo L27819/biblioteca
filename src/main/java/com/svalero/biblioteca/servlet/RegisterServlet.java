@@ -39,7 +39,7 @@ public class RegisterServlet extends HttpServlet {
             UsuarioDao usuarioDao = new UsuarioDao(connection);
             usuarioDao.insert(usuario);
 
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("index.jsp");
 
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
