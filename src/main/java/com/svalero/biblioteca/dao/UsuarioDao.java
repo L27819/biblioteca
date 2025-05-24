@@ -55,6 +55,30 @@ public class UsuarioDao {
 
         return usuarios;
     }
+    public Usuario getById(int id) throws SQLException {
+        String sql = "SELECT * FROM Usuarios WHERE id_usuario = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                Usuario usuario = new Usuario();
+                usuario.setId_usuario(rs.getInt("id_usuario"));
+                usuario.setNombre_usuario(rs.getString("nombre_usuario"));
+                usuario.setNombre(rs.getString("nombre"));
+                usuario.setApellidos(rs.getString("apellidos"));
+                usuario.setEdad(rs.getInt("edad"));
+                usuario.setEmail(rs.getString("email"));
+                usuario.setTelefono(rs.getString("telefono"));
+                usuario.setTipo_usuario(rs.getString("tipo_usuario"));
+                usuario.setActivo(rs.getBoolean("activo"));
+                usuario.setFecha_registro(rs.getDate("fecha_registro").toLocalDate());
+                usuario.setImagen(rs.getString("imagen"));
+                return usuario;
+            }
+            return null;
+        }
+    }
 
     private Usuario mapUsuario(ResultSet rs) throws SQLException {
         Usuario usuario = new Usuario();
