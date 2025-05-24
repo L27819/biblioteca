@@ -29,7 +29,7 @@
                     <a class="nav-link" href="registroUsuario.jsp">Registro</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="login.jsp">Iniciar sesión</a>
+                    <a class="nav-link" href="index.jsp">Iniciar sesión</a>
                 </li>
                 <% } else { %>
 
