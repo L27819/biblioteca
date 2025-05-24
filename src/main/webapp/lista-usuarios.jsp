@@ -24,7 +24,11 @@
             <div class="card h-100 shadow rounded-4">
                 <div class="card-body d-flex flex-column justify-content-between">
                     <div>
-                        <h5 class="card-title fw-bold text-primary">👤 <%= u.getNombre_usuario() %></h5>
+                        <h5 class="card-title fw-bold text-primary">
+                            <a href="detalle-usuario?id=<%= u.getId_usuario() %>" class="text-decoration-none text-primary">
+                                👤 <%= u.getNombre_usuario() %>
+                            </a>
+                        </h5>
                         <p class="card-text">
                             <strong>Nombre:</strong> <%= u.getNombre() %> <%= u.getApellidos() %><br>
                             <strong>Email:</strong> <%= u.getEmail() %><br>
