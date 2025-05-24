@@ -29,11 +29,7 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("usuario", usuario);
 
-            if ("admin".equalsIgnoreCase(usuario.getTipo_usuario())) {
-                response.sendRedirect("panel-admin.jsp");
-            } else {
-                response.sendRedirect("listar-libros");
-            }
+            response.sendRedirect("listar-libros");
 
         } catch (UserNotFoundException e) {
             request.setAttribute("errorMessage", "Usuario o contraseña incorrectos.");
