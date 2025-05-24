@@ -32,9 +32,33 @@
 
         <div class="col-md-4">
             <div class="card shadow-sm text-center p-3">
+                <h5>Listado de autores</h5>
+                <p>Consulta todos los autores registrados y accede a su vista detalle.</p>
+                <a href="listar-autores" class="btn btn-primary">Ver Autores</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm text-center p-3">
                 <h5>Añadir nuevo libro</h5>
                 <p>Registra un nuevo libro en el sistema.</p>
                 <a href="registro-libro.jsp" class="btn btn-primary">Nuevo Libro</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm text-center p-3">
+                <h5>Añadir nuevo usuario</h5>
+                <p>Registra un nuevo usuario en el sistema.</p>
+                <a href="registro-usuario.jsp" class="btn btn-primary">Nuevo usuario</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm text-center p-3">
+                <h5>Añadir nuevo autor</h5>
+                <p>Registra un nuevo autor en el sistema.</p>
+                <a href="registro-autor.jsp" class="btn btn-primary">Nuevo autor</a>
             </div>
         </div>
     </div>
