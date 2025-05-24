@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsuarioDao {
 
@@ -30,6 +32,28 @@ public class UsuarioDao {
                     return mapUsuario(rs);
             }
         }
+    }
+    public List<Usuario> getAll() throws SQLException {
+        String sql = "SELECT * FROM Usuarios";
+        List<Usuario> usuarios = new ArrayList<>();
+
+        try (PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                Usuario usuario = new Usuario();
+                usuario.setId_usuario(resultSet.getInt("id_usuario"));
+                usuario.setNombre_usuario(resultSet.getString("nombre_usuario"));
+                usuario.setNombre(resultSet.getString("nombre"));
+                usuario.setApellidos(resultSet.getString("apellidos"));
+                usuario.setEmail(resultSet.getString("email"));
+                usuario.setTipo_usuario(resultSet.getString("tipo_usuario"));
+                usuario.setActivo(resultSet.getBoolean("activo"));
+                usuarios.add(usuario);
+            }
+        }
+
+        return usuarios;
     }
 
     private Usuario mapUsuario(ResultSet rs) throws SQLException {
@@ -63,4 +87,5 @@ public class UsuarioDao {
             statement.executeUpdate();
         }
     }
+
 }
