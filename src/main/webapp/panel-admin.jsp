@@ -18,7 +18,7 @@
             <div class="card shadow-sm text-center p-3">
                 <h5>Gestión de Libros</h5>
                 <p>Visualiza, edita o elimina los libros disponibles.</p>
-                <a href="lista-libros.jsp" class="btn btn-primary">Ver Libros</a>
+                <a href="listar-libros" class="btn btn-primary">Ver Libros</a>
             </div>
         </div>
 
@@ -26,7 +26,7 @@
             <div class="card shadow-sm text-center p-3">
                 <h5>Gestión de Usuarios</h5>
                 <p>Revisa cuentas registradas y roles de usuario.</p>
-                <a href="lista-usuarios.jsp" class="btn btn-primary">Ver Usuarios</a>
+                <a href="listar-usuarios" class="btn btn-primary">Ver Usuarios</a>
             </div>
         </div>
 
