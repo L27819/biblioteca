@@ -17,7 +17,11 @@
             <div class="card h-100">
                 <img src="<%= libro.getImagen() %>" class="card-img-top" alt="Imagen del libro">
                 <div class="card-body">
-                    <h5 class="card-title"><%= libro.getTitulo() %></h5>
+                    <h5 class="card-title">
+                        <a href="detalle-libro?id=<%= libro.getId_libro() %>" class="text-decoration-none text-dark">
+                            <%= libro.getTitulo() %>
+                        </a>
+                    </h5>
                     <p class="card-text">Género: <%= libro.getGenero() %></p>
                     <p class="card-text">Editorial: <%= libro.getEditorial() %></p>
                     <p class="card-text">Precio: <%= libro.getPrecio() %> €</p>

@@ -39,4 +39,29 @@ public class LibroDao {
             statement.close();
             return listaLibros;
     }
+
+    public Libro getById(int idLibro) throws SQLException {
+        String sql = "SELECT * FROM Libros WHERE id_libro = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, idLibro);
+            ResultSet result = statement.executeQuery();
+
+            if (result.next()) {
+                Libro libro = new Libro();
+                libro.setId_libro(result.getInt("id_libro"));
+                libro.setTitulo(result.getString("titulo"));
+                libro.setGenero(result.getString("genero"));
+                libro.setEditorial(result.getString("editorial"));
+                libro.setFecha_publicacion(result.getDate("fecha_publicacion").toLocalDate());
+                libro.setPaginas(result.getInt("paginas"));
+                libro.setPrecio(result.getFloat("precio"));
+                libro.setDisponible(result.getBoolean("disponible"));
+                libro.setDescripcion(result.getString("descripcion"));
+                libro.setImagen(result.getString("imagen"));
+                return libro;
+            } else {
+                return null;
+            }
+        }
+    }
 }
