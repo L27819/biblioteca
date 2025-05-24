@@ -73,4 +73,18 @@ public class LibroDao {
         }
     }
 
+    public void update(Libro libro) throws SQLException {
+        String sql = "UPDATE Libros SET titulo=?, editorial=?, genero=?, paginas=?, precio=?, descripcion=? WHERE id_libro=?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, libro.getTitulo());
+            statement.setString(2, libro.getEditorial());
+            statement.setString(3, libro.getGenero());
+            statement.setInt(4, libro.getPaginas());
+            statement.setFloat(5, libro.getPrecio());
+            statement.setString(6, libro.getDescripcion());
+            statement.setInt(7, libro.getId_libro());
+
+            statement.executeUpdate();
+        }
+    }
 }
