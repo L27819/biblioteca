@@ -33,6 +33,7 @@ public class UsuarioDao {
             }
         }
     }
+
     public List<Usuario> getAll() throws SQLException {
         String sql = "SELECT * FROM Usuarios";
         List<Usuario> usuarios = new ArrayList<>();
@@ -55,6 +56,7 @@ public class UsuarioDao {
 
         return usuarios;
     }
+
     public Usuario getById(int id) throws SQLException {
         String sql = "SELECT * FROM Usuarios WHERE id_usuario = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -94,6 +96,7 @@ public class UsuarioDao {
 
         return usuario;
     }
+
     public void insert(Usuario usuario) throws SQLException {
         String sql = "INSERT INTO Usuarios (nombre, apellidos, email, nombre_usuario, contrasena, tipo_usuario, activo, fecha_registro) " +
                 "VALUES (?, ?, ?, ?, SHA1(?), ?, ?, ?)";
@@ -112,4 +115,30 @@ public class UsuarioDao {
         }
     }
 
+    public void delete(int id) throws SQLException {
+        String sql = "DELETE FROM Usuarios WHERE id_usuario = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        }
+    }
+
+    public void update(Usuario usuario) throws SQLException {
+        String sql = "UPDATE Usuarios SET nombre_usuario = ?, nombre = ?, apellidos = ?, email = ?, telefono = ?, edad = ?, tipo_usuario = ?, activo = ?, imagen = ? WHERE id_usuario = ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, usuario.getNombre_usuario());
+            stmt.setString(2, usuario.getNombre());
+            stmt.setString(3, usuario.getApellidos());
+            stmt.setString(4, usuario.getEmail());
+            stmt.setString(5, usuario.getTelefono());
+            stmt.setInt(6, usuario.getEdad());
+            stmt.setString(7, usuario.getTipo_usuario());
+            stmt.setBoolean(8, usuario.isActivo());
+            stmt.setString(9, usuario.getImagen());
+            stmt.setInt(10, usuario.getId_usuario());
+
+            stmt.executeUpdate();
+        }
+    }
 }
