@@ -102,4 +102,33 @@ public class AutorDao {
             }
         }
     }
+
+    public void update(Autor autor) throws SQLException {
+        String sql = "UPDATE Autores SET nombre=?, apellidos=?, nacionalidad=?, fecha_nacimiento=?, fecha_defuncion=?, activo=?, numero_obras=?, imagen=? WHERE id_autor=?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, autor.getNombre());
+            stmt.setString(2, autor.getApellidos());
+            stmt.setString(3, autor.getNacionalidad());
+            stmt.setDate(4, java.sql.Date.valueOf(autor.getFecha_nacimiento()));
+            if (autor.getFecha_defuncion() != null) {
+                stmt.setDate(5, java.sql.Date.valueOf(autor.getFecha_defuncion()));
+            } else {
+                stmt.setNull(5, java.sql.Types.DATE);
+            }
+            stmt.setBoolean(6, autor.isActivo());
+            stmt.setInt(7, autor.getNumero_obras());
+            stmt.setString(8, autor.getImagen());
+            stmt.setInt(9, autor.getId_autor());
+            stmt.executeUpdate();
+        }
+    }
+
+    public void deleteById(int id) throws SQLException {
+        String sql = "DELETE FROM Autores WHERE id_autor = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        }
+    }
+
 }
