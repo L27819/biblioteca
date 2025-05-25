@@ -22,9 +22,18 @@
                     <p class="card-text"><strong>Disponible:</strong> <%= libro.isDisponible() ? "Sí" : "No" %></p>
                     <p class="card-text"><strong>Descripción:</strong> <%= libro.getDescripcion() %></p>
                 </div>
+
+                <% if (usuario != null && "user".equalsIgnoreCase(usuario.getTipo_usuario())) { %>
+
+                <form action="PrestarLibroServlet" method="post">
+                    <input type="hidden" name="id_libro" value="<%= libro.getId_libro() %>">
+                    <button type="submit" class="btn btn-success mt-3 w-100">Solicitar préstamo 📖</button>
+                </form>
+                <% } %>
             </div>
         </div>
     </div>
 </div>
+
 
 <%@ include file="includes/footer.jsp" %>

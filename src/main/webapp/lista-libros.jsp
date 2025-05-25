@@ -33,11 +33,6 @@
                         <a href="EditarLibroServlet?id=<%= libro.getId_libro() %>" class="btn btn-warning btn-sm">Editar</a>
                         <a href="EliminarLibroServlet?id=<%= libro.getId_libro() %>" class="btn btn-danger btn-sm"
                            onclick="return confirm('¿Seguro que deseas eliminar este libro?');">Eliminar</a>
-                        <% } else if (usuario != null && "user".equalsIgnoreCase(usuario.getTipo_usuario())) { %>
-                        <form action="AddToUserServlet" method="post" class="d-inline">
-                            <input type="hidden" name="idLibro" value="<%= libro.getId_libro() %>">
-                            <button type="submit" class="btn btn-primary btn-sm">Solicitar</button>
-                        </form>
                         <% } %>
                     </div>
                 </div>
