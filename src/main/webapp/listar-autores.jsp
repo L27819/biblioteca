@@ -29,6 +29,17 @@
                         <strong>Vivo:</strong> <%= autor.isActivo() ? "Sí" : "No" %><br>
                         <strong>Obras:</strong> <%= autor.getNumero_obras() %>
                     </p>
+
+                    <% if (usuario != null && "admin".equalsIgnoreCase(usuario.getTipo_usuario())) { %>
+
+                    <div class="d-flex gap-2 mt-3">
+                        <a href="EditarAutorServlet?id=<%= autor.getId_autor() %>" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="EliminarAutorServlet?id=<%= autor.getId_autor() %>" class="btn btn-danger btn-sm"
+                           onclick="return confirm('¿Seguro que deseas eliminar este autor?');">Eliminar</a>
+                    </div>
+
+                    <% } %>
+
                 </div>
             </div>
         </div>
