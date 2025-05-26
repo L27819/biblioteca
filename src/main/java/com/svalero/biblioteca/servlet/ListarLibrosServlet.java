@@ -16,6 +16,8 @@ import java.util.List;
 @WebServlet("/listar-libros")
 public class ListarLibrosServlet extends HttpServlet {
 
+    private static final int LIBROS_POR_PAGINA = 6;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -28,11 +30,29 @@ public class ListarLibrosServlet extends HttpServlet {
             return;
         }
 
+        int paginaActual = 1;
+        try {
+            String param = request.getParameter("pagina");
+            if (param != null) {
+                paginaActual = Integer.parseInt(param);
+            }
+        } catch (NumberFormatException ignored) {}
+
+        int offset = (paginaActual - 1) * LIBROS_POR_PAGINA;
+
         try (Connection connection = new Database().getConnection()) {
             LibroDao libroDao = new LibroDao(connection);
-            List<Libro> listaLibros = libroDao.getAll();
 
-            request.setAttribute("libros", listaLibros);
+            // Solo los libros de la página actual
+            List<Libro> librosPagina = libroDao.getPaginated(offset, LIBROS_POR_PAGINA);
+            int totalLibros = libroDao.getTotalCount();
+            int totalPaginas = (int) Math.ceil((double) totalLibros / LIBROS_POR_PAGINA);
+
+            request.setAttribute("libros", librosPagina);
+            request.setAttribute("paginaActual", paginaActual);
+            request.setAttribute("totalPaginas", totalPaginas);
+            request.setAttribute("ruta", "listar-libros");
+
             request.getRequestDispatcher("lista-libros.jsp").forward(request, response);
 
         } catch (SQLException | ClassNotFoundException e) {

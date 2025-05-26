@@ -130,5 +130,42 @@ public class AutorDao {
             stmt.executeUpdate();
         }
     }
+    public List<Autor> getPaginated(int offset, int limit) throws SQLException {
+        List<Autor> autores = new ArrayList<>();
+        String sql = "SELECT * FROM Autores LIMIT ? OFFSET ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, limit);
+            stmt.setInt(2, offset);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Autor autor = new Autor();
+                autor.setId_autor(rs.getInt("id_autor"));
+                autor.setNombre(rs.getString("nombre"));
+                autor.setApellidos(rs.getString("apellidos"));
+                autor.setNacionalidad(rs.getString("nacionalidad"));
+                autor.setFecha_nacimiento(rs.getDate("fecha_nacimiento") != null ? rs.getDate("fecha_nacimiento").toLocalDate() : null);
+                autor.setFecha_defuncion(rs.getDate("fecha_defuncion") != null ? rs.getDate("fecha_defuncion").toLocalDate() : null);
+                autor.setActivo(rs.getBoolean("activo"));
+                autor.setNumero_obras(rs.getInt("numero_obras"));
+                autor.setImagen(rs.getString("imagen"));
+                autores.add(autor);
+            }
+        }
+
+        return autores;
+    }
+
+    public int getTotalCount() throws SQLException {
+        String sql = "SELECT COUNT(*) FROM Autores";
+        try (PreparedStatement stmt = connection.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        }
+        return 0;
+    }
 
 }

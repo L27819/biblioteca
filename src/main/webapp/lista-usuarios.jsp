@@ -52,6 +52,8 @@
         <p class="text-center text-danger">No hay usuarios registrados.</p>
         <% } %>
     </div>
+    <%@ include file="includes/paginacion.jsp" %>
+
 </div>
 
 <%@ include file="includes/footer.jsp" %>
