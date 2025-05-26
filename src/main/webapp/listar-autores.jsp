@@ -11,6 +11,15 @@
 <div class="container my-5">
     <h2 class="text-center mb-4">Listado de Autores ✍️</h2>
 
+    <form action="listar-autores" method="get" class="row mb-4">
+        <div class="col-md-10">
+            <input type="text" name="busqueda" class="form-control" placeholder="Buscar autor por nombre o nacionalidad">
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-success w-100">Buscar</button>
+        </div>
+    </form>
+
     <div class="row">
         <% if (listaAutores != null && !listaAutores.isEmpty()) {
             for (Autor autor : listaAutores) {

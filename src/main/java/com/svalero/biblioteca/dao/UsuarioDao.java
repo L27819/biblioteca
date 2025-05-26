@@ -175,5 +175,31 @@ public class UsuarioDao {
         }
         return 0;
     }
+    public List<Usuario> buscarPorTexto(String texto) throws SQLException {
+        List<Usuario> usuarios = new ArrayList<>();
+        String sql = "SELECT * FROM Usuarios WHERE nombre_usuario LIKE ? OR nombre LIKE ? OR apellidos LIKE ? OR email LIKE ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            String pattern = "%" + texto + "%";
+            for (int i = 1; i <= 4; i++) {
+                stmt.setString(i, pattern);
+            }
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Usuario usuario = new Usuario();
+                usuario.setId_usuario(rs.getInt("id_usuario"));
+                usuario.setNombre_usuario(rs.getString("nombre_usuario"));
+                usuario.setNombre(rs.getString("nombre"));
+                usuario.setApellidos(rs.getString("apellidos"));
+                usuario.setEmail(rs.getString("email"));
+                usuario.setTipo_usuario(rs.getString("tipo_usuario"));
+                usuario.setActivo(rs.getBoolean("activo"));
+                usuarios.add(usuario);
+            }
+        }
+
+        return usuarios;
+    }
 
 }
