@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.svalero.biblioteca.model.Libro" %>
-<%@ page import="com.svalero.biblioteca.model.Usuario" %>
 <%@ include file="includes/header.jsp" %>
 <%@ include file="includes/navbar.jsp" %>
 
@@ -47,6 +46,8 @@
             }
         %>
     </div>
+
+    <%@ include file="includes/paginacion.jsp" %>
 </div>
 
 <%@ include file="includes/footer.jsp" %>

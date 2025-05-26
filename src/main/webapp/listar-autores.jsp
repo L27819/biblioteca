@@ -52,6 +52,7 @@
         </div>
         <% } %>
     </div>
+    <%@ include file="includes/paginacion.jsp" %>
 </div>
 
 <%@ include file="includes/footer.jsp" %>

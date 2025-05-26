@@ -107,4 +107,41 @@ public class LibroDao {
             statement.executeUpdate();
         }
     }
+    public List<Libro> getPaginated(int offset, int limit) throws SQLException {
+        List<Libro> libros = new ArrayList<>();
+        String sql = "SELECT * FROM Libros LIMIT ? OFFSET ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, limit);
+            stmt.setInt(2, offset);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Libro libro = new Libro();
+                libro.setId_libro(rs.getInt("id_libro"));
+                libro.setTitulo(rs.getString("titulo"));
+                libro.setGenero(rs.getString("genero"));
+                libro.setEditorial(rs.getString("editorial"));
+                libro.setFecha_publicacion(rs.getDate("fecha_publicacion").toLocalDate());
+                libro.setPaginas(rs.getInt("paginas"));
+                libro.setPrecio(rs.getFloat("precio"));
+                libro.setDisponible(rs.getBoolean("disponible"));
+                libro.setImagen(rs.getString("imagen"));
+                libros.add(libro);
+            }
+        }
+        return libros;
+    }
+
+    public int getTotalCount() throws SQLException {
+        String sql = "SELECT COUNT(*) FROM Libros";
+        try (PreparedStatement stmt = connection.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        }
+        return 0;
+    }
+
 }

@@ -15,15 +15,34 @@ import java.util.List;
 @WebServlet("/listar-autores")
 public class ListarAutoresServlet extends HttpServlet {
 
+    private static final int AUTORES_POR_PAGINA = 6;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        int paginaActual = 1;
+        try {
+            String param = request.getParameter("pagina");
+            if (param != null) {
+                paginaActual = Integer.parseInt(param);
+            }
+        } catch (NumberFormatException ignored) {}
+
+        int offset = (paginaActual - 1) * AUTORES_POR_PAGINA;
+
         try (Connection connection = new Database().getConnection()) {
             AutorDao autorDao = new AutorDao(connection);
-            List<Autor> autores = autorDao.getAll();
 
-            request.setAttribute("autores", autores);
+            List<Autor> autoresPagina = autorDao.getPaginated(offset, AUTORES_POR_PAGINA);
+            int totalAutores = autorDao.getTotalCount();
+            int totalPaginas = (int) Math.ceil((double) totalAutores / AUTORES_POR_PAGINA);
+
+            request.setAttribute("autores", autoresPagina);
+            request.setAttribute("paginaActual", paginaActual);
+            request.setAttribute("totalPaginas", totalPaginas);
+            request.setAttribute("ruta", "listar-autores");
+
             request.getRequestDispatcher("listar-autores.jsp").forward(request, response);
 
         } catch (SQLException | ClassNotFoundException e) {
