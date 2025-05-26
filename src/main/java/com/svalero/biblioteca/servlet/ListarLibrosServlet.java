@@ -30,6 +30,7 @@ public class ListarLibrosServlet extends HttpServlet {
             return;
         }
 
+        String textoBusqueda = request.getParameter("busqueda");
         int paginaActual = 1;
         try {
             String param = request.getParameter("pagina");
@@ -42,16 +43,34 @@ public class ListarLibrosServlet extends HttpServlet {
 
         try (Connection connection = new Database().getConnection()) {
             LibroDao libroDao = new LibroDao(connection);
+            List<Libro> librosPagina;
+            int totalLibros;
 
-            // Solo los libros de la página actual
-            List<Libro> librosPagina = libroDao.getPaginated(offset, LIBROS_POR_PAGINA);
-            int totalLibros = libroDao.getTotalCount();
-            int totalPaginas = (int) Math.ceil((double) totalLibros / LIBROS_POR_PAGINA);
+            if (textoBusqueda != null && !textoBusqueda.trim().isEmpty()) {
+                List<Libro> librosFiltrados = libroDao.buscarPorTexto(textoBusqueda.trim());
+                totalLibros = librosFiltrados.size();
 
-            request.setAttribute("libros", librosPagina);
-            request.setAttribute("paginaActual", paginaActual);
-            request.setAttribute("totalPaginas", totalPaginas);
-            request.setAttribute("ruta", "listar-libros");
+                int totalPaginas = (int) Math.ceil((double) totalLibros / LIBROS_POR_PAGINA);
+                int toIndex = Math.min(offset + LIBROS_POR_PAGINA, totalLibros);
+
+                librosPagina = librosFiltrados.subList(offset, toIndex);
+
+                request.setAttribute("busqueda", textoBusqueda);
+                request.setAttribute("libros", librosPagina);
+                request.setAttribute("paginaActual", paginaActual);
+                request.setAttribute("totalPaginas", totalPaginas);
+                request.setAttribute("ruta", "listar-libros?busqueda=" + textoBusqueda);
+
+            } else {
+                librosPagina = libroDao.getPaginated(offset, LIBROS_POR_PAGINA);
+                totalLibros = libroDao.getTotalCount();
+                int totalPaginas = (int) Math.ceil((double) totalLibros / LIBROS_POR_PAGINA);
+
+                request.setAttribute("libros", librosPagina);
+                request.setAttribute("paginaActual", paginaActual);
+                request.setAttribute("totalPaginas", totalPaginas);
+                request.setAttribute("ruta", "listar-libros");
+            }
 
             request.getRequestDispatcher("lista-libros.jsp").forward(request, response);
 

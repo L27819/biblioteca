@@ -21,6 +21,7 @@ public class ListarAutoresServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String filtro = request.getParameter("busqueda");
         int paginaActual = 1;
         try {
             String param = request.getParameter("pagina");
@@ -34,8 +35,19 @@ public class ListarAutoresServlet extends HttpServlet {
         try (Connection connection = new Database().getConnection()) {
             AutorDao autorDao = new AutorDao(connection);
 
-            List<Autor> autoresPagina = autorDao.getPaginated(offset, AUTORES_POR_PAGINA);
-            int totalAutores = autorDao.getTotalCount();
+            List<Autor> autoresPagina;
+            int totalAutores;
+
+            if (filtro != null && !filtro.trim().isEmpty()) {
+                filtro = filtro.trim();
+                autoresPagina = autorDao.buscarPorTexto(filtro, offset, AUTORES_POR_PAGINA);
+                totalAutores = autorDao.contarPorTexto(filtro);
+                request.setAttribute("busqueda", filtro);
+            } else {
+                autoresPagina = autorDao.getPaginated(offset, AUTORES_POR_PAGINA);
+                totalAutores = autorDao.getTotalCount();
+            }
+
             int totalPaginas = (int) Math.ceil((double) totalAutores / AUTORES_POR_PAGINA);
 
             request.setAttribute("autores", autoresPagina);

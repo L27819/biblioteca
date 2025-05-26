@@ -29,13 +29,32 @@ public class ListarUsuariosServlet extends HttpServlet {
             }
         } catch (NumberFormatException ignored) {}
 
-        int offset = (paginaActual - 1) * USUARIOS_POR_PAGINA;
+        String filtro = request.getParameter("filtro");
 
         try (Connection connection = new Database().getConnection()) {
             UsuarioDao usuarioDao = new UsuarioDao(connection);
+            List<Usuario> usuariosPagina;
+            int totalUsuarios;
 
-            List<Usuario> usuariosPagina = usuarioDao.getPaginated(offset, USUARIOS_POR_PAGINA);
-            int totalUsuarios = usuarioDao.getTotalCount();
+            if (filtro != null && !filtro.trim().isEmpty()) {
+                List<Usuario> resultados = usuarioDao.buscarPorTexto(filtro);
+                totalUsuarios = resultados.size();
+
+                int offset = (paginaActual - 1) * USUARIOS_POR_PAGINA;
+                int fin = Math.min(offset + USUARIOS_POR_PAGINA, totalUsuarios);
+                if (offset >= totalUsuarios) {
+                    usuariosPagina = List.of(); // Evitar errores si el offset supera
+                } else {
+                    usuariosPagina = resultados.subList(offset, fin);
+                }
+
+                request.setAttribute("filtro", filtro); // para que se mantenga en el input
+            } else {
+                int offset = (paginaActual - 1) * USUARIOS_POR_PAGINA;
+                usuariosPagina = usuarioDao.getPaginated(offset, USUARIOS_POR_PAGINA);
+                totalUsuarios = usuarioDao.getTotalCount();
+            }
+
             int totalPaginas = (int) Math.ceil((double) totalUsuarios / USUARIOS_POR_PAGINA);
 
             request.setAttribute("usuarios", usuariosPagina);

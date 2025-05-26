@@ -16,6 +16,15 @@
 <div class="container my-5">
     <h2 class="mb-4 text-center">Listado de Usuarios 👥</h2>
 
+    <form action="listar-usuarios" method="get" class="row mb-4">
+        <div class="col-md-10">
+            <input type="text" name="filtro" class="form-control" placeholder="Buscar usuario.">
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary w-100">Buscar</button>
+        </div>
+    </form>
+
     <div class="row">
         <% if (listaUsuarios != null && !listaUsuarios.isEmpty()) {
             for (Usuario u : listaUsuarios) {

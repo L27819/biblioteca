@@ -144,4 +144,34 @@ public class LibroDao {
         return 0;
     }
 
+    public List<Libro> buscarPorTexto(String texto) throws SQLException {
+        List<Libro> libros = new ArrayList<>();
+        String sql = "SELECT l.* FROM Libros l " +
+                "LEFT JOIN Autores a ON l.id_autor = a.id_autor " +
+                "WHERE l.titulo LIKE ? OR l.genero LIKE ? OR l.editorial LIKE ? OR a.nombre LIKE ? OR a.apellidos LIKE ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            String filtro = "%" + texto + "%";
+            for (int i = 1; i <= 5; i++) {
+                stmt.setString(i, filtro);
+            }
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Libro libro = new Libro();
+                libro.setId_libro(rs.getInt("id_libro"));
+                libro.setTitulo(rs.getString("titulo"));
+                libro.setGenero(rs.getString("genero"));
+                libro.setEditorial(rs.getString("editorial"));
+                libro.setFecha_publicacion(rs.getDate("fecha_publicacion").toLocalDate());
+                libro.setPaginas(rs.getInt("paginas"));
+                libro.setPrecio(rs.getFloat("precio"));
+                libro.setDisponible(rs.getBoolean("disponible"));
+                libro.setImagen(rs.getString("imagen"));
+                libros.add(libro);
+            }
+        }
+        return libros;
+    }
+
 }

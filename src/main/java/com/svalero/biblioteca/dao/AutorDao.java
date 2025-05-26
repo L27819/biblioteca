@@ -167,5 +167,46 @@ public class AutorDao {
         }
         return 0;
     }
+    public List<Autor> buscarPorTexto(String texto, int offset, int limit) throws SQLException {
+        List<Autor> autores = new ArrayList<>();
+        String sql = "SELECT * FROM Autores WHERE nombre LIKE ? OR apellidos LIKE ? OR nacionalidad LIKE ? LIMIT ? OFFSET ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            String filtro = "%" + texto + "%";
+            stmt.setString(1, filtro);
+            stmt.setString(2, filtro);
+            stmt.setString(3, filtro);
+            stmt.setInt(4, limit);
+            stmt.setInt(5, offset);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Autor autor = new Autor();
+                autor.setId_autor(rs.getInt("id_autor"));
+                autor.setNombre(rs.getString("nombre"));
+                autor.setApellidos(rs.getString("apellidos"));
+                autor.setNacionalidad(rs.getString("nacionalidad"));
+                autor.setNumero_obras(rs.getInt("numero_obras"));
+                autor.setImagen(rs.getString("imagen"));
+                autor.setActivo(rs.getBoolean("activo"));
+                autores.add(autor);
+            }
+        }
+        return autores;
+    }
+
+    public int contarPorTexto(String texto) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM Autores WHERE nombre LIKE ? OR apellidos LIKE ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            String filtro = "%" + texto + "%";
+            stmt.setString(1, filtro);
+            stmt.setString(2, filtro);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        }
+        return 0;
+    }
 
 }
