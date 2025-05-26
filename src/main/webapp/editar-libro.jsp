@@ -44,7 +44,8 @@
         </div>
 
         <div class="col-12">
-            <button type="submit" class="btn btn-primary w-100">Guardar cambios</button>
+            <button type="submit" class="btn btn-primary w-100"
+                    onclick="return confirm('¿Seguro que deseas editar este libro?');">Guardar cambios</button>
         </div>
     </form>
 </div>
