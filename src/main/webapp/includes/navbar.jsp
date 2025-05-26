@@ -35,7 +35,7 @@
 
                 <% if ("user".equalsIgnoreCase(usuario.getTipo_usuario())) { %>
                 <li class="nav-item">
-                    <a class="nav-link" href="zona-usuario.jsp">Mi zona</a>
+                    <a class="nav-link" href="zona-usuario">Mi zona</a>
                 </li>
                 <% } %>
 

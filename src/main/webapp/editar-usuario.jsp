@@ -72,7 +72,8 @@
         </div>
 
         <div class="col-12 text-center">
-            <button type="submit" class="btn btn-primary px-5">Guardar cambios</button>
+            <button type="submit" class="btn btn-primary px-5" o
+                    onclick="return confirm('¿Seguro que deseas editar este usuario?');">Guardar cambios</button>
         </div>
     </form>
 </div>
