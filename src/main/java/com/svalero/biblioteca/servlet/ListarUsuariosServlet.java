@@ -5,6 +5,7 @@ import com.svalero.biblioteca.database.Database;
 import com.svalero.biblioteca.model.Usuario;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet("/listar-usuarios")
+@MultipartConfig
 public class ListarUsuariosServlet extends HttpServlet {
 
     private static final int USUARIOS_POR_PAGINA = 6;

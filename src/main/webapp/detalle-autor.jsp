@@ -17,7 +17,7 @@
   <h2 class="mb-4 text-center">📚 Detalles del Autor</h2>
 
   <div class="card mx-auto shadow p-4" style="max-width: 600px;">
-    <img src="<%= autor.getImagen() %>" class="card-img-top mb-3" alt="Imagen del autor">
+    <img src="../biblio_images/<%= autor.getImagen() %>" class="card-img-top mb-3" alt="Imagen del autor">
     <div class="card-body">
       <h5 class="card-title"><%= autor.getNombre() %> <%= autor.getApellidos() %></h5>
       <p class="card-text"><strong>Nacionalidad:</strong> <%= autor.getNacionalidad() %></p>

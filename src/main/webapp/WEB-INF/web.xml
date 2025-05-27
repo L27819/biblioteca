@@ -2,4 +2,10 @@
 
 <web-app>
     <display-name>Aplicacion para una bibloteca con sistema de reservas de libros</display-name>
+
+    <context-param>
+        <description>Ruta para almacenar las imágenes de los libros</description>
+        <param-name>imagePath</param-name>
+        <param-value>C:/Users/Portatil/Desktop/apache-tomcat-9.0.104/webapps/biblio_images</param-value>
+    </context-param>
 </web-app>

@@ -42,7 +42,7 @@
         %>
         <div class="col-md-4 mb-4">
             <div class="card h-100">
-                <img src="<%= libro.getImagen() %>" class="card-img-top" alt="Imagen del libro">
+                <img src="../biblio_images/<%= libro.getImagen() %>" class="card-img-top" alt="Imagen del libro">
                 <div class="card-body">
                     <h5 class="card-title">
                         <a href="detalle-libro?id=<%= libro.getId_libro() %>" class="text-decoration-none text-dark">

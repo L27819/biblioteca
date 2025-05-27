@@ -6,6 +6,7 @@ import com.svalero.biblioteca.model.Libro;
 import com.svalero.biblioteca.model.Usuario;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet("/listar-libros")
+@MultipartConfig
 public class ListarLibrosServlet extends HttpServlet {
 
     private static final int LIBROS_POR_PAGINA = 6;

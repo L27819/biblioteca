@@ -5,6 +5,7 @@ import com.svalero.biblioteca.database.Database;
 import com.svalero.biblioteca.model.Usuario;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.sql.Connection;
 
 @WebServlet("/detalle-usuario")
+@MultipartConfig
 public class DetalleUsuarioServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
