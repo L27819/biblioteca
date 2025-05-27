@@ -52,7 +52,7 @@ public class ZonaUsuarioServlet extends HttpServlet {
             request.setAttribute("prestamos", prestamos);
             request.setAttribute("titulosLibros", titulosLibros);
 
-            request.getRequestDispatcher("zona-usuario.jsp").forward(request, response);
+            request.getRequestDispatcher("prestamos.jsp").forward(request, response);
 
         } catch (Exception e) {
             e.printStackTrace();

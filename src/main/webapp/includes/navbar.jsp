@@ -26,7 +26,7 @@
 
                 <% if (usuario == null) { %>
                 <li class="nav-item">
-                    <a class="nav-link" href="../registro-usuario.jsp">Registro</a>
+                    <a class="nav-link" href="registro-usuario.jsp">Registro</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="index.jsp">Iniciar sesión</a>
@@ -35,7 +35,7 @@
 
                 <% if ("user".equalsIgnoreCase(usuario.getTipo_usuario())) { %>
                 <li class="nav-item">
-                    <a class="nav-link" href="zona-usuario">Mi zona</a>
+                    <a class="nav-link" href="panel-usuario.jsp">Mi zona</a>
                 </li>
                 <% } %>
 
