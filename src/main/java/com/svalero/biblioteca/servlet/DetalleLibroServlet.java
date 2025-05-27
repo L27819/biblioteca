@@ -5,6 +5,7 @@ import com.svalero.biblioteca.database.Database;
 import com.svalero.biblioteca.model.Libro;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 @WebServlet("/detalle-libro")
+@MultipartConfig
 public class DetalleLibroServlet extends HttpServlet {
 
     @Override

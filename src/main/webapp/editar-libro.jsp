@@ -10,7 +10,7 @@
 <div class="container my-5">
     <h2 class="mb-4 text-center">Editar Libro</h2>
 
-    <form action="EditarLibroServlet" method="post" class="row g-3">
+    <form action="EditarLibroServlet" method="post" enctype="multipart/form-data" class="row g-3">
         <input type="hidden" name="id_libro" value="<%= libro.getId_libro() %>">
 
         <div class="col-12">
@@ -31,6 +31,11 @@
         <div class="col-md-6">
             <label class="form-label">Páginas</label>
             <input type="number" name="paginas" class="form-control" value="<%= libro.getPaginas() %>">
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Imagen</label>
+            <input type="file" name="imagen" class="form-control">
         </div>
 
         <div class="col-md-6">

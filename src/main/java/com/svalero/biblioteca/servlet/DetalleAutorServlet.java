@@ -5,12 +5,14 @@ import com.svalero.biblioteca.database.Database;
 import com.svalero.biblioteca.model.Autor;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.sql.Connection;
 
 @WebServlet("/detalle-autor")
+@MultipartConfig
 public class DetalleAutorServlet extends HttpServlet {
 
     @Override

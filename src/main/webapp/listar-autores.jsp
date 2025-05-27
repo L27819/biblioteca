@@ -26,7 +26,7 @@
         %>
         <div class="col-md-4 mb-4">
             <div class="card h-100 shadow-sm rounded-4">
-                <img src="<%= autor.getImagen() %>" class="card-img-top" alt="Imagen del autor" style="height: 300px; object-fit: cover;">
+                <img src="../biblio_images/<%= autor.getImagen() %>" class="card-img-top" alt="Imagen del autor" style="height: 300px; object-fit: cover;">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">
                         <a href="detalle-autor?id=<%= autor.getId_autor() %>" class="text-decoration-none text-dark">

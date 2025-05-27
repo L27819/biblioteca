@@ -11,7 +11,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card shadow">
-                <img src="<%= libro.getImagen() %>" class="card-img-top" alt="Portada del libro">
+                <img src="../biblio_images/<%= libro.getImagen() %>" class="card-img-top" alt="Imagen del libro">
                 <div class="card-body">
                     <h3 class="card-title"><%= libro.getTitulo() %></h3>
                     <p class="card-text"><strong>Género:</strong> <%= libro.getGenero() %></p>

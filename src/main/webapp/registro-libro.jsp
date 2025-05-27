@@ -5,7 +5,7 @@
 <div class="container my-5">
   <h2 class="text-center mb-4">Añadir Nuevo Libro 📖</h2>
 
-  <form action="RegistroLibroServlet" method="post" class="row g-3">
+  <form action="RegistroLibroServlet" method="post" enctype="multipart/form-data" class="row g-3">
     <div class="col-md-6">
       <label class="form-label">Título</label>
       <input type="text" name="titulo" class="form-control" required>
@@ -42,8 +42,8 @@
     </div>
 
     <div class="col-md-6">
-      <label class="form-label">Imagen (URL)</label>
-      <input type="text" name="imagen" class="form-control">
+      <label class="form-label">Imagen</label>
+      <input type="file" name="imagen" class="form-control">
     </div>
 
     <div class="col-md-6">
