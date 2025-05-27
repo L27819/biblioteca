@@ -27,7 +27,7 @@
       <div class="card shadow-sm text-center p-3">
         <h5>Mis datos</h5>
         <p>Consulta y modifica tus datos personales. </p>
-        <a href="" class="btn btn-primary">Ver Datos</a>
+        <a href="mis-datos.jsp" class="btn btn-primary">Ver Datos</a>
       </div>
     </div>
   </div>
