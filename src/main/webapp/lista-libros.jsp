@@ -40,7 +40,7 @@
             if (listaLibros != null && !listaLibros.isEmpty()) {
                 for (Libro libro : listaLibros) {
         %>
-        <div class="col-md-4 mb-4">
+        <div class="shadow-sm rounded-4 col-md-4 mb-4">
             <div class="card h-100">
                 <img src="../biblio_images/<%= libro.getImagen() %>" class="card-img-top" alt="Imagen del libro">
                 <div class="card-body">
