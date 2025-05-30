@@ -8,7 +8,7 @@
     List<Autor> listaAutores = (List<Autor>) request.getAttribute("autores");
 %>
 
-<div class="container my-5">
+<div class="container my-5 img-fluid">
     <h2 class="text-center mb-4">Listado de Autores ✍️</h2>
 
     <form action="listar-autores" method="get" class="row mb-4">

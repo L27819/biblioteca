@@ -5,6 +5,7 @@ import com.svalero.biblioteca.database.Database;
 import com.svalero.biblioteca.model.Autor;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,8 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @WebServlet("/RegistroAutorServlet")
+@MultipartConfig
+
 public class RegistroAutorServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -51,8 +54,7 @@ public class RegistroAutorServlet extends HttpServlet {
             //Procesa la imagen del autor
             String filename = "default2.jpg";
             if (imagen.getSize() != 0) {
-                filename =  UUID.randomUUID() + ".jpg";    // TODO por ahora solamente soportamos jpg
-                // TODO Comprobar porque fallaba utilizar el contexto del servlet
+                filename =  UUID.randomUUID() + ".jpg";
                 String imagePath = "C:/Users/Portatil/Desktop/apache-tomcat-9.0.104/webapps/biblio_images";
                 InputStream inputStream = imagen.getInputStream();
                 Files.copy(inputStream, Path.of(imagePath + File.separator + filename));
