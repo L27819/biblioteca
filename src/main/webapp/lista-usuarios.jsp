@@ -21,7 +21,7 @@
             <input type="text" name="filtro" class="form-control" placeholder="Buscar usuario.">
         </div>
         <div class="col-md-2">
-            <button type="submit" class="btn btn-primary w-100">Buscar</button>
+            <button type="submit" class="btn btn-success w-100">Buscar</button>
         </div>
     </form>
 

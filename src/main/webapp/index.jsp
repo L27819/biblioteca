@@ -2,8 +2,7 @@
 <%@ include file="includes/header.jsp" %>
 <%@ include file="includes/navbar.jsp" %>
 
-
-    <div class="container d-flex justify-content-center my-5">
+<div class="container d-flex justify-content-center my-5">
         <form action="LoginServlet" method="post">
             <h1 class=" h3 mb-3 fw-normal text-center">Inicia sesión:</h1>
 
