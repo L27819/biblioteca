@@ -51,8 +51,7 @@ public class RegistroLibroServlet extends HttpServlet {
             // Procesa la imagen del juego
             String filename = "default.jpg";
             if (imagen.getSize() != 0) {
-                filename =  UUID.randomUUID() + ".jpg";    // TODO por ahora solamente soportamos jpg
-                // TODO Comprobar porque fallaba utilizar el contexto del servlet
+                filename =  UUID.randomUUID() + ".jpg";
                 String imagePath = "C:/Users/Portatil/Desktop/apache-tomcat-9.0.104/webapps/biblio_images";
                 InputStream inputStream = imagen.getInputStream();
                 Files.copy(inputStream, Path.of(imagePath + File.separator + filename));

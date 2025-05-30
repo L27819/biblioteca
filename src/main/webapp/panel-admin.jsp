@@ -25,7 +25,7 @@
         <div class="col-md-4">
             <div class="card shadow-sm text-center p-3">
                 <h5>Gestión de Usuarios</h5>
-                <p>Revisa cuentas registradas y roles de usuario.</p>
+                <p>Revisa cuentas registradas, roles de usuario, modifica o elimina usuarios.</p>
                 <a href="listar-usuarios" class="btn btn-primary">Ver Usuarios</a>
             </div>
         </div>

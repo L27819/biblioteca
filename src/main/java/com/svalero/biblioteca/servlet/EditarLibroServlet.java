@@ -5,14 +5,21 @@ import com.svalero.biblioteca.database.Database;
 import com.svalero.biblioteca.model.Libro;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @WebServlet("/EditarLibroServlet")
+@MultipartConfig
 public class EditarLibroServlet extends HttpServlet {
 
     // Muestra el formulario con los datos del libro
@@ -47,6 +54,7 @@ public class EditarLibroServlet extends HttpServlet {
         int paginas = Integer.parseInt(request.getParameter("paginas"));
         float precio = Float.parseFloat(request.getParameter("precio"));
         String descripcion = request.getParameter("descripcion");
+        Part imagen = request.getPart("imagen");
 
         try (Connection connection = new Database().getConnection()) {
             LibroDao libroDao = new LibroDao(connection);
@@ -58,6 +66,16 @@ public class EditarLibroServlet extends HttpServlet {
             libro.setPaginas(paginas);
             libro.setPrecio(precio);
             libro.setDescripcion(descripcion);
+
+            // Procesa la imagen del libro
+            String filename = "default.jpg";
+            if (imagen.getSize() != 0) {
+                filename =  UUID.randomUUID() + ".jpg";
+                String imagePath = "C:/Users/Portatil/Desktop/apache-tomcat-9.0.104/webapps/biblio_images";
+                InputStream inputStream = imagen.getInputStream();
+                Files.copy(inputStream, Path.of(imagePath + File.separator + filename));
+            }
+            libro.setImagen(filename);
 
             libroDao.update(libro);
 
