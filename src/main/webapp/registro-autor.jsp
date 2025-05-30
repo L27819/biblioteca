@@ -5,7 +5,7 @@
 <div class="container my-5">
     <h2 class="text-center mb-4">Registrar Nuevo Autor ✍️</h2>
 
-    <form action="RegistroAutorServlet" method="post" class="row g-3">
+    <form action="RegistroAutorServlet" method="post" enctype="multipart/form-data" class="row g-3">
 
         <div class="col-md-6">
             <label class="form-label">Nombre</label>
@@ -39,7 +39,7 @@
 
         <div class="col-md-12">
             <label class="form-label">Imagen (URL)</label>
-            <input type="text" name="imagen" class="form-control">
+            <input type="file" name="imagen" class="form-control">
         </div>
 
         <div class="col-12 text-center">

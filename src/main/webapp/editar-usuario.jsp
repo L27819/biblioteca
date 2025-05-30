@@ -59,11 +59,6 @@
         </div>
 
         <div class="col-md-6">
-            <label class="form-label">Imagen (URL)</label>
-            <input type="text" name="imagen" value="<%= usuarioEditar.getImagen() %>" class="form-control">
-        </div>
-
-        <div class="col-md-6">
             <label class="form-label">Activo</label>
             <select name="activo" class="form-select">
                 <option value="true" <%= usuarioEditar.isActivo() ? "selected" : "" %>>Sí</option>

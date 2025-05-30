@@ -40,7 +40,6 @@ public class EditarUsuarioServlet extends HttpServlet {
             String telefono = request.getParameter("telefono");
             int edad = Integer.parseInt(request.getParameter("edad"));
             String tipo_usuario = request.getParameter("tipo_usuario");
-            String imagen = request.getParameter("imagen");
             boolean activo = Boolean.parseBoolean(request.getParameter("activo"));
 
             try (Connection connection = (new Database()).getConnection()) {
@@ -53,7 +52,6 @@ public class EditarUsuarioServlet extends HttpServlet {
                 usuario.setTelefono(telefono);
                 usuario.setEdad(edad);
                 usuario.setTipo_usuario(tipo_usuario);
-                usuario.setImagen(imagen);
                 usuario.setActivo(activo);
                 usuarioDao.update(usuario);
             }

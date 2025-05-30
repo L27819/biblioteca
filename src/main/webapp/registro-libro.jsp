@@ -8,12 +8,12 @@
   <form action="RegistroLibroServlet" method="post" enctype="multipart/form-data" class="row g-3">
     <div class="col-md-6">
       <label class="form-label">Título</label>
-      <input type="text" name="titulo" class="form-control" required>
+      <input type="text" name="titulo" class="form-control">
     </div>
 
     <div class="col-md-6">
       <label class="form-label">ISBN</label>
-      <input type="text" name="isbn" class="form-control" required>
+      <input type="text" name="isbn" class="form-control">
     </div>
 
     <div class="col-md-6">
@@ -48,7 +48,7 @@
 
     <div class="col-md-6">
       <label class="form-label">Autor (ID)</label>
-      <input type="number" name="id_autor" class="form-control" required>
+      <input type="number" name="id_autor" class="form-control" >
     </div>
 
     <div class="col-12">
