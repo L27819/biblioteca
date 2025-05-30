@@ -40,36 +40,32 @@ public class EditarDatosServlet extends HttpServlet {
         }
 
         String nuevoNombre = request.getParameter("nombre");
+        String nuevosApellidos = request.getParameter("apellidos");
+        String nuevoNombreUsuario = request.getParameter("nombre_usuario");
         String nuevoEmail = request.getParameter("email");
         String nuevaContrasena = request.getParameter("contrasena");
 
         try (Connection connection = new Database().getConnection()) {
-            String sql;
-            PreparedStatement ps;
+            String sql = "UPDATE usuarios SET nombre = ?, apellidos = ?, nombre_usuario = ?, email = ?, contrasena = ? WHERE id_usuario = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
 
-            if (nuevaContrasena != null && !nuevaContrasena.trim().isEmpty()) {
-                sql = "UPDATE usuarios SET nombre_usuario = ?, email = ?, contrasena = ? WHERE id_usuario = ?";
-                ps = connection.prepareStatement(sql);
-                ps.setString(1, nuevoNombre);
-                ps.setString(2, nuevoEmail);
-                ps.setString(3, sha1(nuevaContrasena));
-                ps.setInt(4, usuario.getId_usuario());
-
-                usuario.setContrasena(sha1(nuevaContrasena));
-            } else {
-                sql = "UPDATE usuarios SET nombre_usuario = ?, email = ? WHERE id_usuario = ?";
-                ps = connection.prepareStatement(sql);
-                ps.setString(1, nuevoNombre);
-                ps.setString(2, nuevoEmail);
-                ps.setInt(3, usuario.getId_usuario());
-            }
+            ps.setString(1, nuevoNombre);
+            ps.setString(2, nuevosApellidos);
+            ps.setString(3, nuevoNombreUsuario);
+            ps.setString(4, nuevoEmail);
+            ps.setString(5, sha1(nuevaContrasena));  // Siempre se cifra
+            ps.setInt(6, usuario.getId_usuario());
 
             ps.executeUpdate();
 
-            usuario.setNombre_usuario(nuevoNombre);
+            // Actualizamos también el objeto de sesión
+            usuario.setNombre(nuevoNombre);
+            usuario.setApellidos(nuevosApellidos);
+            usuario.setNombre_usuario(nuevoNombreUsuario);
             usuario.setEmail(nuevoEmail);
-            session.setAttribute("usuario", usuario);
+            usuario.setContrasena(sha1(nuevaContrasena));
 
+            session.setAttribute("usuario", usuario);
             response.sendRedirect("mis-datos.jsp");
 
         } catch (SQLException | ClassNotFoundException e) {
