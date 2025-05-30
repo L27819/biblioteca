@@ -11,11 +11,11 @@
     <h2 class="mb-4 text-center">Listado de Libros 📚</h2>
 
     <form action="listar-libros" method="get" class="row mb-4">
-        <div class="col-md-6 offset-md-3">
+        <div class="col-md-10">
             <input type="text" name="busqueda" class="form-control" placeholder="Busca tu libro">
         </div>
-        <div class="col-12 mt-2 text-center">
-            <button type="submit" class="btn btn-primary">Buscar</button>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-success w-100">Buscar</button>
         </div>
     </form>
 
